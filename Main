@@ -57,4 +57,4 @@ elif choice == 2:
         stream.download("./" + yt.title)
 
 
-input("Done!")
+input("Done. Press Enter to exit!")
