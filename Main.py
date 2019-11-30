@@ -1,6 +1,8 @@
 import os
 from pytube import YouTube
 
+folderName = ""
+
 
 def show_progress_bar(stream, _chunk, _file_handle, bytes_remaining):
     current = stream.filesize - bytes_remaining
@@ -21,40 +23,36 @@ yt.register_on_progress_callback(show_progress_bar)
 print("Searching...")
 print(yt.title)
 
-try:
-    os.mkdir(yt.title)
-except ValueError:
-    print("Forbidden character in title  audio/video!")
-    folderName = input("Enter new name of folder with your audio/video: ")
-    os.mkdir(folderName)
+folderName = input("Enter name of folder with your audio/video: ")
+os.mkdir(folderName)
 
 print("(1) Audio\t(2) Video\nOption:", end=" ")
 choice = int(input())
 
 if choice == 1:
     stream = yt.streams.get_by_itag('140')
-    stream.download("./" + yt.title)
+    stream.download("./" + folderName)
 elif choice == 2:
     print("Quality: \n (144) 144p\n(240) 240p\n(360) 360p\n(480) 480p\n(720) 720p\n(1080) 1080p")
     quality = int(input("Quality of Video: "))
     if quality == 144:
         stream = yt.streams.get_by_itag('160')
-        stream.download("./" + yt.title)
+        stream.download("./" + folderName)
     if quality == 240:
         stream = yt.streams.get_by_itag('133')
-        stream.download("./" + yt.title)
+        stream.download("./" + folderName)
     if quality == 360:
         stream = yt.streams.get_by_itag('134')
-        stream.download("./" + yt.title)
+        stream.download("./" + folderName)
     if quality == 480:
         stream = yt.streams.get_by_itag('135')
-        stream.download("./" + yt.title)
+        stream.download("./" + folderName)
     if quality == 720:
         stream = yt.streams.get_by_itag('136')
-        stream.download("./" + yt.title)
+        stream.download("./" + folderName)
     if quality == 1080:
         stream = yt.streams.get_by_itag('137')
-        stream.download("./" + yt.title)
+        stream.download("./" + folderName)
 
 
 input("\nDone. Press Enter to exit!")
